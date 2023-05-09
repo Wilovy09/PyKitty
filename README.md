@@ -40,7 +40,7 @@ sudo python pykitty.py -t 3024_Day
 Esto nos dara una salida como esta
 
 ```bash
-❯ python /home/USR/Proyects/Test/pykitty.py -t 3023_Day
+❯ python /home/USR/Proyects/PyKitty/pykitty.py -t 3023_Day
 
 >>Se establecio 3023_Day como tema principal
 Reinicia la terminal para ver los cambios
