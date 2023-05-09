@@ -21,6 +21,26 @@ ruta_archivo = '/home/USR/.config/HyprV/kitty/kitty.conf' # Aqui pon la ruta de 
 pathThemes = r'.config/kitty/themes/' # Aqui pon la ruta de tu carpeta themes
 ```
 
+En nuestro archivo `kitty.conf` debemos tener en la primera linea el `include`
+
+De esta forma:
+
+```txt
+include ~/.config/HyprV/kitty/themes/Hurtado.conf
+font_family      jetbrains mono nerd font
+font_size        12
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+mouse_hide_wait  2.0
+cursor_shape     block
+url_color        #0087bd
+url_style        dotted
+#Close the terminal without confirmation
+confirm_os_window_close 0
+background_opacity 0.90
+```
+
 ## Comandos
 
 |Completo  |Abreviacion |Funcion |
