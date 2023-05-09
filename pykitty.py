@@ -1,5 +1,7 @@
-import os
-import argparse
+# Autor: Wilovy
+# Fecha: 2021-10-10
+# Descripcion: Script para cambiar el tema de Kitty terminal
+import os, argparse
 
 ruta_archivo = '/home/wilovy/.config/HyprV/kitty/kitty.conf' # Aqui pon la ruta de tu archivo kitty.conf
 pathThemes = r'.config/kitty/themes/' # Aqui pon la ruta de tu carpeta themes
@@ -9,15 +11,14 @@ parser.add_argument('--tema', '-t', help='Cambiar tema a (NOMBRE)')
 parser.add_argument('--scan', '-s', help='Ver temas disponibles %(prog)s', action='store_true')
 
 def cambiarTema(NOMBRE):
-    print(f'\n>>Se establecio {NOMBRE} como tema principal\nReinicia la terminal para ver los cambios')
     with open(ruta_archivo) as file_object:
         lista = file_object.readlines()
         if 'include' in lista[0]:
             lineaTheme = lista[0].split('/')
             lineaTheme[-1] = NOMBRE + '.conf'
             lineaTheme = '/'.join(lineaTheme)
-            lista[0] = lineaTheme
-            lista = '\n'.join(lista)
+            lista[0] = f'{lineaTheme}\n'
+            lista = ''.join(lista)
             with open(ruta_archivo, 'w') as file_object:
                 file_object.writelines(lista)
         else:
