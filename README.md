@@ -1,12 +1,12 @@
 # PyKitty
 
-PyKitty es un script en python que te permite cambiar el los temas de tu terminal Kitty con una interfaz CLI.
+PyKitty es un script en python que te permite cambiar valores esteticos de tu terminal Kitty con una interfaz CLI.
 
 ## Configuracion
 
 Para configurar, por el momento no es tan automatico como sera en un futuro
 
-Primero deberas buscar la carpeta donde se guarda Kitty, usualmente es en
+Primero deberas buscar la carpeta donde se guarda Kitty, usualmente es en:
 
 ```bash
 .config/kitty
@@ -17,15 +17,22 @@ Una vez ubicada la carpeta deberas de ponerlo dentro del archivo `pykitty.py`
 De esta forma:
 
 ```py
-ruta_archivo = '/home/USR/.config/HyprV/kitty/kitty.conf' # Aqui pon la ruta de tu archivo kitty.conf
-pathThemes = r'.config/kitty/themes/' # Aqui pon la ruta de tu carpeta themes
+ruta_archivo = '/home/wilovy/.config/HyprV/kitty/kitty.conf' # Aqui pon la ruta de tu archivo kitty.conf
+pathThemes = '.config/kitty/themes/' # Aqui pon la ruta de tu carpeta themes
+pathFonts = '/usr/share/fonts/TTF/' # Aqui pon la ruta de tu carpeta TTF
 ```
 
-En nuestro archivo `kitty.conf` debemos tener en la primera linea el `include`
+En nuestro archivo `kitty.conf` debemos tener en este orden las siguientes lineas
 
-De esta forma:
+```conf
+include ~/.config/HyprV/kitty/themes/Hurtado.conf
+font_family      jetbrains mono nerd font
+font_size        12
+```
 
-```txt
+De esta forma quedaria nuestro `kitty.conf`:
+
+```conf
 include ~/.config/HyprV/kitty/themes/Hurtado.conf
 font_family      jetbrains mono nerd font
 font_size        12
@@ -43,25 +50,26 @@ background_opacity 0.90
 
 ## Comandos
 
-|Completo  |Abreviacion |Funcion |
-|-------|-------|-------|
-|--help |-h  |Muestra esta tabla en la temrminal|
-|--tema |-t  |Cambia el tema al que escribamos a su lado|
-|--scan |-s  |Nos muestra todos los temas que tengamos en la carpeta `themes`|
+|Completo   |Abreviacion |Funcion                                                        |
+|-----------|------------|---------------------------------------------------------------|
+|--help     |-h          |Muestra esta tabla en la temrminal                             |
+|--tema     |-t          |Cambia el tema al que escribamos a su lado                     |
+|--scan     |-s          |Nos muestra todos los temas que tengamos en la carpeta `themes`|
+|--tamano   |-f          |Cambiar el tamano de la fuente                                 |
+|--setFont  |-r          |Cambiar el tipo de fuente                                      |
+|--scanFonts|-e          |Ver fuentes disponibles en la carpeta `/fonts/TTF/`            |
 
 ## Uso
 
-Para cambiar el tema deberomos poner el nombre del tema sin la terminacion `.conf`
+Para cambiar valores deberemos usar el sig comando, solo cambiando el prefijo que deseamos modificar
 
 ```bash
+python pykitty.py -t 3024_Day
+python pykitty.py -r Montserrat-Medium
+python pykitty.py -f 12
+
+# Si nos da algun error de permisos podemos usar `sudo`
 sudo python pykitty.py -t 3024_Day
-```
-
-Esto nos dara una salida como esta
-
-```bash
-❯ python /home/USR/Proyects/PyKitty/pykitty.py -t 3023_Day
-
->>Se establecio 3023_Day como tema principal
-Reinicia la terminal para ver los cambios
+sudo python pykitty.py -r Montserrat-Medium
+sudo python pykitty.py -f 12
 ```

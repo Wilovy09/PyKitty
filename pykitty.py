@@ -4,12 +4,17 @@
 import os, argparse
 
 ruta_archivo = '/home/wilovy/.config/HyprV/kitty/kitty.conf' # Aqui pon la ruta de tu archivo kitty.conf
-pathThemes = r'.config/kitty/themes/' # Aqui pon la ruta de tu carpeta themes
+pathThemes = '.config/kitty/themes/' # Aqui pon la ruta de tu carpeta themes
+pathFonts = '/usr/share/fonts/TTF/' # Aqui pon la ruta de tu carpeta TTF
 
 parser = argparse.ArgumentParser(description='App para cambiar el tema de Kitty Terminal')
-parser.add_argument('--tema', '-t', help='Cambiar tema a (NOMBRE)')
+parser.add_argument('--tema', '-t', help='Cambiar tema')
+parser.add_argument('--scan', '-s', help='Ver temas disponibles', action='store_true')
+
 parser.add_argument('--tamano', '-f', help='Cambiar el tamano de la fuente')
-parser.add_argument('--scan', '-s', help='Ver temas disponibles %(prog)s', action='store_true')
+
+parser.add_argument('--setFont', '-r', help='Cambiar tipo de letra')
+parser.add_argument('--scanFonts', '-e', help='Ver fuentes TTF disponibles', action='store_true')
 
 def cambiarTema(NOMBRE):
     with open(ruta_archivo) as file_object:
@@ -39,6 +44,25 @@ def cambianTamano(TAMANO):
         else:
             print('\nNo hay ninguna linea de tamano establecido\nO la linea "font_size" no es la tercera linea del archivo')
 
+def cambianFONT(NOMBRETTF):
+    with open(ruta_archivo) as file_object:
+        lista = file_object.readlines()
+        if 'font_family' in lista[1]:
+            lineaSize = lista[1].split(' ')
+            del lineaSize[6:]
+            lineaSize[5] = ' ' + NOMBRETTF
+            lineaSize = ' '.join(lineaSize)
+            lista[1] = f'{lineaSize}\n'
+            lista = ''.join(lista)
+            with open(ruta_archivo, 'w') as file_object:
+                file_object.writelines(lista)
+        else:
+            print('\nNo hay ninguna linea de font_family establecido\nO la linea "font_family" no es la segunda linea del archivo')
+
+def verFonts():
+    os.chdir(pathFonts)
+    print(os.system('ls'))
+
 def verTemas():
     os.chdir(pathThemes)
     print(os.system('ls'))
@@ -50,6 +74,10 @@ if __name__ == '__main__':
         cambiarTema(args.tema)
     elif args.tamano:
         cambianTamano(args.tamano)
+    elif args.setFont:
+        cambianFONT(args.setFont)
+    elif args.scanFonts:
+        verFonts()
     elif args.scan:
         verTemas()
     else:
