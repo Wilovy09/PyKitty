@@ -34,7 +34,7 @@ De esta forma quedaria nuestro `kitty.conf`:
 
 ```conf
 include ~/.config/HyprV/kitty/themes/Hurtado.conf
-font_family      jetbrains mono nerd font
+font_family      jetbrainsmono nerd font
 font_size        12
 bold_font        auto
 italic_font      auto

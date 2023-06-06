@@ -3,9 +3,9 @@
 # Descripcion: Script para cambiar aspectos de tu terminal Kitty
 import os, argparse
 
-ruta_archivo = '/home/wilovy/.config/HyprV/kitty/kitty.conf' # Aqui pon la ruta de tu archivo kitty.conf
-pathThemes = '.config/kitty/themes/' # Aqui pon la ruta de tu carpeta themes
-pathFonts = '/usr/share/fonts/TTF/' # Aqui pon la ruta de tu carpeta TTF
+ruta_archivo = r'/home/wilovy/.config/HyprV/kitty/kitty.conf' # Aqui pon la ruta de tu archivo kitty.conf
+pathThemes = r'/home/wilovy/.config/HyprV/kitty/themes/' # Aqui pon la ruta de tu carpeta themes
+pathFonts = r'/usr/share/fonts/TTF/' # Aqui pon la ruta de tu carpeta TTF
 
 parser = argparse.ArgumentParser(description='App para cambiar el tema de Kitty Terminal')
 parser.add_argument('--tema', '-t', help='Cambiar tema')
