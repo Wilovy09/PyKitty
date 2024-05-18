@@ -1,3 +1,5 @@
+# [DEPRECATED]
+
 # PyKitty
 
 PyKitty es un script en python que te permite cambiar valores esteticos de tu terminal Kitty con una interfaz CLI.
